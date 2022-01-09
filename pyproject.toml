@@ -8,8 +8,8 @@ authors = ["ExpandingDev <tylersengia@gmail.com>"]
 python = "^3.8"
 Flask = "^2.0.2"
 SQLAlchemy = "^1.4.29"
-connexion = "^2.9.0"
 python-dotenv = "^0.19.2"
+connexion2 = "^2.10.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^4.0.1"
