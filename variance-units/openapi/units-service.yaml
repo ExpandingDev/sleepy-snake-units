@@ -1,1 +1,202 @@
-TODO: Define the OpenAPI spec for the microservice
+openapi: "3.0.0"
+info:
+    version: 1.0.0
+    title: Variance Units
+    license:
+        name: The Unlicense
+paths:
+    /units:
+        get:
+            summary: Returns a list of units according to search parameters.
+            operationId: searchUnits
+            parameters:
+                - name: searchParams
+                  in: query
+                  required: false
+                  description: User supplied search information to use to tailor the response.
+                  schema:
+                    $ref: "#/components/schemas/UnitSearchParams"
+            responses:
+                200:
+                    description: Search results.
+                    content:
+                        application/json:
+                            schema:
+                                $ref "#/components/schemas/Units"
+                default:
+                    $ref: "#/components/response/ErrorResponse"
+        post:
+            summary: Creates a new Unit in the database.
+            operationId: createUnit
+            parameters:
+                - name: name
+                  in: query
+                  required: true
+                  schema:
+                    type: string
+                - name: abbreviation
+                  in: query
+                  required: true
+                  schema:
+                    type: string
+                - name: dimension
+                  in: query
+                  required: true
+                  schema:
+                    type: string
+                - name: multiplier
+                  in: query
+                  required: true
+                  schema:
+                    type: number
+                    format: float
+            responses:
+                200:
+                    description: Created new Unit.
+                    content:
+                        application/json:
+                            schema:
+                                $ref "#/components/schemas/Unit"
+                default:
+                    $ref: "#/components/response/ErrorResponse"
+    /units/{unitId}:
+        get:
+            summary: Returns complete info for a given Unit.
+            operationId: getUnitById
+            parameters:
+                - name: unitId
+                  in: path
+                  required: true
+                  description: The id of the Unit requested.
+                  schema:
+                    type: integer
+                    format: int64
+            responses: 
+                200:
+                    description: Retreived unit information.
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Unit"
+                default:
+                    $ref: "#/components/responses/ErrorResponse"
+        put:
+            summary: Modifies an existing Unit.
+            operationId: updateUnit
+            parameters:
+                - name: userId
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+                - name: name
+                  in: query
+                  required: false
+                  schema:
+                    type: string
+                - name: dimension
+                  in: query
+                  required: false
+                  schema:
+                    type: string
+                - name: abbreviation
+                  in: query
+                  required: false
+                  schema:
+                    type: string
+                - name: multiplier
+                  in: query
+                  required: false
+                  schema:
+                    type: number
+                    format: float
+            reponses:
+                200:
+                    description: Unit Updated
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Unit"
+                default:
+                    $ref: "#/components/responses/ErrorResponse"
+        delete:
+            summary: Removes a Unit from the database.
+            operationId: deleteUnit
+            parameters:
+                - name: unitId
+                  in: path
+                  required: true
+                  description: The id of the Unit to delete
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                200:
+                    description: Unit deleted.
+                    content:
+                        application/json:
+                            schema:
+                                type: integer
+                                format: int64
+                default:
+                    $ref: "#/components/responses/ErrorResponse"
+components:
+    schemas:
+        Unit:
+            required:
+                - id
+                - name
+                - multiplier
+                - dimension
+                - abbreviation
+            properties:
+                id:
+                    type: integer
+                    format: int64
+                name:
+                    type: string
+                dimension:
+                    type: string
+                abbreviation:
+                    type: string
+                multiplier:
+                    type: number
+                    format: float
+                removable:
+                    type: number
+        Units:
+            type: array
+            items:
+                $ref: "#/components/schemas/Unit"
+        UnitSearchParams:
+            properties:
+                count:
+                    type: integer
+                    format: int32
+                offset:
+                    type: integer
+                    format: int64
+                dimension:
+                    type: string
+                name:
+                    type: string
+                abbreviation:
+                    type: string
+        Error:
+            required:
+                - code
+                - message
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                message:
+                    type: string
+    responses:
+        ErrorResponse:
+            description: Unexpected Error
+            content:
+                application/json:
+                    schema:
+                        $ref: "#/components/schemas/Error"
