@@ -1,8 +1,8 @@
-# sleepy-snake-units
+# Variance Units 
 A RESTful Python microservice for converting between measurements of different units.
 
 ## Dependencies
-sleepy-snake-uits relies upon `flask`, ...
+
 
 ## Architecture
 - OpenAPI specification
