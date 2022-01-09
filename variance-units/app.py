@@ -1,9 +1,12 @@
 import logging
 import pathlib
 import sqlalchemy
-from flask import Flask
+import connexion
 
-app = Flask(__name__)
+from config import UnitsConfig
+
+app = connexion.FlaskApp(__name__, specification_dir="openapi/")
 
 if __name__ == "__main__":
-    app.run()
+    app.add_api("units-service.yaml")
+    app.run(port=UnitsConfig.port)
