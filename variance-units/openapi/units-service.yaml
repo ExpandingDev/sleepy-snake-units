@@ -22,9 +22,9 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref "#/components/schemas/Units"
+                                $ref: "#/components/schemas/Units"
                 default:
-                    $ref: "#/components/response/ErrorResponse"
+                    $ref: "#/components/responses/ErrorResponse"
         post:
             summary: Creates a new Unit in the database.
             operationId: createUnit
@@ -56,9 +56,9 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref "#/components/schemas/Unit"
+                                $ref: "#/components/schemas/Unit"
                 default:
-                    $ref: "#/components/response/ErrorResponse"
+                    $ref: "#/components/responses/ErrorResponse"
     /units/{unitId}:
         get:
             summary: Returns complete info for a given Unit.
@@ -111,7 +111,7 @@ paths:
                   schema:
                     type: number
                     format: float
-            reponses:
+            responses:
                 200:
                     description: Unit Updated
                     content:
@@ -144,6 +144,7 @@ paths:
 components:
     schemas:
         Unit:
+            type: object
             required:
                 - id
                 - name
@@ -170,6 +171,7 @@ components:
             items:
                 $ref: "#/components/schemas/Unit"
         UnitSearchParams:
+            type: object
             properties:
                 count:
                     type: integer
@@ -184,6 +186,7 @@ components:
                 abbreviation:
                     type: string
         Error:
+            type: object
             required:
                 - code
                 - message
