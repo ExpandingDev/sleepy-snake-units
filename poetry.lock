@@ -86,6 +86,7 @@ jsonschema = ">=2.5.1,<4"
 openapi-spec-validator = ">=0.2.4,<0.4"
 PyYAML = ">=5.1,<6"
 requests = ">=2.9.1,<3"
+swagger-ui-bundle = {version = ">=0.0.2,<0.1", optional = true, markers = "extra == \"swagger-ui\""}
 werkzeug = ">=1.0,<3"
 
 [package.extras]
@@ -428,6 +429,17 @@ pymysql = ["pymysql (<1)", "pymysql"]
 sqlcipher = ["sqlcipher3-binary"]
 
 [[package]]
+name = "swagger-ui-bundle"
+version = "0.0.9"
+description = "swagger_ui_bundle - swagger-ui files in a pip package"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Jinja2 = ">=2.0"
+
+[[package]]
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -462,7 +474,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "81f8e03a2bdd39322febdac30f5ddd34fba969117895d1ccd5a35cd8aeefb165"
+content-hash = "fba64fef6b13776b7b0870034a68496e60996cfd01f65ee58e18e63b8bd45963"
 
 [metadata.files]
 atomicwrites = [
@@ -806,6 +818,10 @@ sqlalchemy = [
     {file = "SQLAlchemy-1.4.29-cp39-cp39-win32.whl", hash = "sha256:37b46bfc4af3dc226acb6fa28ecd2e1fd223433dc5e15a2bad62bf0a0cbb4e8b"},
     {file = "SQLAlchemy-1.4.29-cp39-cp39-win_amd64.whl", hash = "sha256:08cfd35eecaba79be930c9bfd2e1f0c67a7e1314355d83a378f9a512b1cf7587"},
     {file = "SQLAlchemy-1.4.29.tar.gz", hash = "sha256:fa2bad14e1474ba649cfc969c1d2ec915dd3e79677f346bbfe08e93ef9020b39"},
+]
+swagger-ui-bundle = [
+    {file = "swagger_ui_bundle-0.0.9-py3-none-any.whl", hash = "sha256:cea116ed81147c345001027325c1ddc9ca78c1ee7319935c3c75d3669279d575"},
+    {file = "swagger_ui_bundle-0.0.9.tar.gz", hash = "sha256:b462aa1460261796ab78fd4663961a7f6f347ce01760f1303bbbdf630f11f516"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
